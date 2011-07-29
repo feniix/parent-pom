@@ -1,0 +1,567 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <groupId>net.feniixhq</groupId>
+    <artifactId>parent</artifactId>
+    <version>1-SNAPSHOT</version>
+    <packaging>pom</packaging>
+
+    <name>Parent Pom</name>
+    
+    <description>Parent POM. Provides default project build configuration.</description>
+    
+    <developers>
+        <developer>
+            <id>feniix</id>
+            <name>Sebastian Otaegui</name>
+            <email>feniix@gmail.com</email>
+            <url>http://blog.feniix-hq.net</url>
+            <timezone>-6</timezone>
+        </developer>
+
+    </developers>
+    
+    <scm>
+        <connection>scm:svn:git://github.com/feniix/parent-pom.git</connection>
+        <developerConnection>scm:svn:git@github.com:feniix/parent-pom.git</developerConnection>
+        <url>https://github.com/feniix/parent-pom</url>
+    </scm>
+
+    <properties>
+        <!-- **************** -->
+        <!-- Plugins versions -->
+        <!-- **************** -->
+        <version.antrun.plugin>1.6</version.antrun.plugin>
+        <version.assembly.plugin>2.2.1</version.assembly.plugin>
+        <version.buildhelper.plugin>1.7</version.buildhelper.plugin>
+        <version.buildnumber.plugin>1.0</version.buildnumber.plugin>
+        <version.clean.plugin>2.4.1</version.clean.plugin>
+        <version.changelog.plugin>2.2</version.changelog.plugin>
+        <version.checkstyle.plugin>2.6</version.checkstyle.plugin>
+        <version.cobertura.plugin>2.4</version.cobertura.plugin>
+        <version.clover2.plugin>3.0.2</version.clover2.plugin>
+        <version.compiler.plugin>2.3.2</version.compiler.plugin>
+        <version.dependency.plugin>2.3</version.dependency.plugin>
+        <version.deploy.plugin>2.6</version.deploy.plugin>
+        <version.eclipse.plugin>2.8</version.eclipse.plugin>
+        <version.ear.plugin>2.6</version.ear.plugin>
+        <version.ejb.plugin>2.3</version.ejb.plugin>
+        <version.enforcer.plugin>1.0.1</version.enforcer.plugin>
+        <version.findbugs.plugin>2.3.2</version.findbugs.plugin>
+        <version.idea.plugin>2.2</version.idea.plugin>
+        <version.install.plugin>2.3.1</version.install.plugin>
+        <version.jar.plugin>2.3.1</version.jar.plugin>
+        <version.javadoc.plugin>2.8</version.javadoc.plugin>
+        <version.javancss.plugin>2.0</version.javancss.plugin>
+        <version.jdepend.plugin>2.0-beta-2</version.jdepend.plugin>
+        <version.jxr.plugin>2.2</version.jxr.plugin>
+        <version.license.plugin>1.0-beta-2</version.license.plugin>
+        <version.pir.plugin>2.4</version.pir.plugin><!-- maven-project-info-reports-plugins -->
+        <version.plugin.plugin>2.8</version.plugin.plugin>
+        <version.pmd.plugin>2.5</version.pmd.plugin>
+        <version.rar.plugin>2.2</version.rar.plugin>
+        <version.release.plugin>2.2</version.release.plugin>
+        <version.resources.plugin>2.5</version.resources.plugin>
+        <version.site.plugin>3.0-beta-3</version.site.plugin>
+        <version.sonar.plugin>2.0-beta-2</version.sonar.plugin>
+        <version.source.plugin>2.1.2</version.source.plugin>
+        <version.surefire.plugin>2.9</version.surefire.plugin>
+        <version.surefire-report.plugin>2.9</version.surefire-report.plugin>
+        <version.taglist.plugin>2.4</version.taglist.plugin>
+        <version.war.plugin>2.1.1</version.war.plugin>
+
+        <!-- ***************** -->
+        <!-- Repository Deployment URLs -->
+        <!-- ***************** -->
+        <releases.repo.url>http://repository.feniix-hq.net/nexus/content/repositories/releases</releases.repo.url>
+        <snapshots.repo.url>http://repository.feniix-hq.net/nexus/content/repositories/snapshots</snapshots.repo.url>
+
+        <!-- ************** -->
+        <!-- Build settings -->
+        <!-- ************** -->
+
+        <!-- Cross plugins settings -->
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+
+        <!-- maven-compiler-plugin -->
+        <maven.compiler.target>1.6</maven.compiler.target>
+        <maven.compiler.source>1.6</maven.compiler.source>
+
+        <!-- maven-enforcer-plugin -->
+        <!-- Version 3.0-beta-1 includes strong POM validation and correct "import" scope dependency resolution. -->
+        <maven.min.version>3.0</maven.min.version>
+        <jdk.min.version>${maven.compiler.source}</jdk.min.version>
+
+        <!-- maven-idea-plugin & maven-eclipse-plugin -->
+        <downloadSources>true</downloadSources>
+
+        <!-- maven-pmd-plugin -->
+        <targetJdk>${maven.compiler.target}</targetJdk>
+
+        <!-- maven-release-plugin -->
+        <useReleaseProfile>false</useReleaseProfile>
+        <arguments>-Prelease</arguments>
+
+    </properties>
+
+    <build>
+
+        <pluginManagement>
+            <!-- All plugins ordered by shortname (antrun, assembly ...) -->
+            <plugins>
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-antrun-plugin</artifactId>
+                    <version>${version.antrun.plugin}</version>
+                </plugin>
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-assembly-plugin</artifactId>
+                    <version>${version.assembly.plugin}</version>
+                    <configuration>
+                        <archive>
+                            <index>true</index>
+                            <manifest>
+                                <addDefaultSpecificationEntries>true</addDefaultSpecificationEntries>
+                                <addDefaultImplementationEntries>true</addDefaultImplementationEntries>
+                            </manifest>
+                            <manifestEntries>
+                                <Implementation-URL>${project.url}</Implementation-URL>
+                            </manifestEntries>
+                            <manifestSections>
+                                <manifestSection>
+                                    <name>Build-Information</name>
+                                    <manifestEntries>
+                                        <Java-Version>${java.version}</Java-Version>
+                                        <Java-Vendor>${java.vendor}</Java-Vendor>
+                                        <Os-Name>${os.name}</Os-Name>
+                                        <Os-Arch>${os.arch}</Os-Arch>
+                                        <Os-Version>${os.version}</Os-Version>
+                                        <Scm-Url>${project.scm.developerConnection}</Scm-Url>
+                                    </manifestEntries>
+                                </manifestSection>
+                            </manifestSections>
+                        </archive>
+                    </configuration>
+                </plugin>
+                <plugin>
+                    <groupId>org.codehaus.mojo</groupId>
+                    <artifactId>build-helper-maven-plugin</artifactId>
+                    <version>${version.buildhelper.plugin}</version>
+                </plugin>
+                <plugin>
+                    <groupId>org.codehaus.mojo</groupId>
+                    <artifactId>buildnumber-maven-plugin</artifactId>
+                    <version>${version.buildnumber.plugin}</version>
+                    <executions>
+                        <execution>
+                            <phase>validate</phase>
+                            <goals>
+                                <goal>create</goal>
+                            </goals>
+                        </execution>
+                    </executions>
+                    <configuration>
+                        <doCheck>true</doCheck>
+                        <doUpdate>true</doUpdate>
+                    </configuration>
+                </plugin>
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-checkstyle-plugin</artifactId>
+                    <version>${version.checkstyle.plugin}</version>
+                </plugin>
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-clean-plugin</artifactId>
+                    <version>${version.clean.plugin}</version>
+                </plugin>
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-changelog-plugin</artifactId>
+                    <version>${version.changelog.plugin}</version>
+                </plugin>
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-compiler-plugin</artifactId>
+                    <version>${version.compiler.plugin}</version>
+                    <configuration>
+                        <optimize>true</optimize>
+                        <showDeprecation>true</showDeprecation>
+                        <showWarnings>true</showWarnings>
+                        <debug>true</debug>
+                        <debuglevel>lines,vars,source</debuglevel>
+                        <verbose>true</verbose>
+                    </configuration>
+                </plugin>
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-dependency-plugin</artifactId>
+                    <version>${version.dependency.plugin}</version>
+                </plugin>
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-deploy-plugin</artifactId>
+                    <version>${version.deploy.plugin}</version>
+                </plugin>
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-ear-plugin</artifactId>
+                    <version>${version.ear.plugin}</version>
+                </plugin>
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-eclipse-plugin</artifactId>
+                    <version>${version.eclipse.plugin}</version>
+                </plugin>
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-ejb-plugin</artifactId>
+                    <version>${version.ejb.plugin}</version>
+                </plugin>
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-enforcer-plugin</artifactId>
+                    <version>${version.enforcer.plugin}</version>
+                </plugin>
+                <plugin>
+                    <groupId>org.codehaus.mojo</groupId>
+                    <artifactId>findbugs-maven-plugin</artifactId>
+                    <version>${version.findbugs.plugin}</version>
+                </plugin>
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-idea-plugin</artifactId>
+                    <version>${version.idea.plugin}</version>
+                </plugin>
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-install-plugin</artifactId>
+                    <version>${version.install.plugin}</version>
+                </plugin>
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-jar-plugin</artifactId>
+                    <version>${version.jar.plugin}</version>
+                    <configuration>
+                        <archive>
+                            <manifest>
+                                <addDefaultImplementationEntries>true</addDefaultImplementationEntries>
+                                <addDefaultSpecificationEntries>true</addDefaultSpecificationEntries>
+                                <addClasspath>true</addClasspath>
+                            </manifest>
+                            <manifestSections>
+                                <manifestSection>
+                                    <name>Build-Information</name>
+                                    <manifestEntries>
+                                        <Java-Version>${java.version}</Java-Version>
+                                        <Java-Vendor>${java.vendor}</Java-Vendor>
+                                        <Os-Name>${os.name}</Os-Name>
+                                        <Os-Arch>${os.arch}</Os-Arch>
+                                        <Os-Version>${os.version}</Os-Version>
+                                        <Scm-Url>${project.scm.developerConnection}</Scm-Url>
+                                    </manifestEntries>
+                                </manifestSection>
+                            </manifestSections>
+                        </archive>
+                    </configuration>
+                </plugin>
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-javadoc-plugin</artifactId>
+                    <version>${version.javadoc.plugin}</version>
+                    <configuration>
+                        <quiet>true</quiet>
+                        <header>
+                            <![CDATA[<b>${project.name} ${project.version}</b>]]>
+</header>
+                        <footer>
+                            <![CDATA[<b>${project.name} ${project.version}</b>]]>
+</footer>
+                    </configuration>
+                </plugin>
+                <plugin>
+                    <groupId>org.codehaus.mojo</groupId>
+                    <artifactId>javancss-maven-plugin</artifactId>
+                    <version>${version.javancss.plugin}</version>
+                </plugin>
+                <plugin>
+                    <groupId>org.codehaus.mojo</groupId>
+                    <artifactId>jdepend-maven-plugin</artifactId>
+                    <version>${version.jdepend.plugin}</version>
+                </plugin>
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-jxr-plugin</artifactId>
+                    <version>${version.jxr.plugin}</version>
+                </plugin>
+                <plugin>
+                    <groupId>org.codehaus.mojo</groupId>
+                    <artifactId>license-maven-plugin</artifactId>
+                    <version>${version.license.plugin}</version>
+                </plugin>
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-plugin-plugin</artifactId>
+                    <version>${version.plugin.plugin}</version>
+                </plugin>
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-pmd-plugin</artifactId>
+                    <version>${version.pmd.plugin}</version>
+                    <configuration>
+                        <targetJdk>${targetJdk}</targetJdk>
+                    </configuration>
+                </plugin>
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-project-info-reports-plugin</artifactId>
+                    <version>${version.pir.plugin}</version>
+                </plugin>
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-rar-plugin</artifactId>
+                    <version>${version.rar.plugin}</version>
+                </plugin>
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-release-plugin</artifactId>
+                    <version>${version.release.plugin}</version>
+                </plugin>
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-resources-plugin</artifactId>
+                    <version>${version.resources.plugin}</version>
+                </plugin>
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-site-plugin</artifactId>
+                    <version>${version.site.plugin}</version>
+                    <configuration>
+                        <reportPlugins>
+                            <plugin>
+                                <groupId>org.apache.maven.plugins</groupId>
+                                <artifactId>maven-javadoc-plugin</artifactId>
+                            </plugin>
+                            <plugin>
+                                <groupId>org.apache.maven.plugins</groupId>
+                                <artifactId>maven-jxr-plugin</artifactId>
+                            </plugin>
+                            <plugin>
+                                <groupId>org.apache.maven.plugins</groupId>
+                                <artifactId>maven-pmd-plugin</artifactId>
+                            </plugin>
+                            <plugin>
+                                <groupId>org.apache.maven.plugins</groupId>
+                                <artifactId>maven-project-info-reports-plugin</artifactId>
+                                <reportSets>
+                                    <reportSet>
+                                        <reports>
+                                            <report>index</report>
+                                            <report>summary</report>
+                                            <report>dependencies</report>
+                                            <report>plugins</report>
+                                            <report>modules</report>
+                                            <report>project-team</report>
+                                            <report>issue-tracking</report>
+                                            <report>scm</report>
+                                            <report>cim</report>
+                                        </reports>
+                                    </reportSet>
+                                </reportSets>
+                            </plugin>
+                            <plugin>
+                                <groupId>org.apache.maven.plugins</groupId>
+                                <artifactId>maven-surefire-report-plugin</artifactId>
+                            </plugin>
+                        </reportPlugins>
+                    </configuration>
+                </plugin>
+                <plugin>
+                    <groupId>org.codehaus.mojo</groupId>
+                    <artifactId>sonar-maven-plugin</artifactId>
+                    <version>${version.sonar.plugin}</version>
+                </plugin>
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-source-plugin</artifactId>
+                    <version>${version.source.plugin}</version>
+                    <configuration>
+                        <includePom>true</includePom>
+                    </configuration>
+                </plugin>
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-surefire-plugin</artifactId>
+                    <version>${version.surefire.plugin}</version>
+                </plugin>
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-surefire-report-plugin</artifactId>
+                    <version>${version.surefire-report.plugin}</version>
+                </plugin>
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-war-plugin</artifactId>
+                    <version>${version.war.plugin}</version>
+                    <configuration>
+                        <archive>
+                            <manifest>
+                                <addDefaultImplementationEntries>true</addDefaultImplementationEntries>
+                                <addDefaultSpecificationEntries>true</addDefaultSpecificationEntries>
+                                <addClasspath>true</addClasspath>
+                            </manifest>
+                            <manifestSections>
+                                <manifestSection>
+                                    <name>Build-Information</name>
+                                    <manifestEntries>
+                                        <Java-Version>${java.version}</Java-Version>
+                                        <Java-Vendor>${java.vendor}</Java-Vendor>
+                                        <Os-Name>${os.name}</Os-Name>
+                                        <Os-Arch>${os.arch}</Os-Arch>
+                                        <Os-Version>${os.version}</Os-Version>
+                                        <Scm-Url>${project.scm.developerConnection}</Scm-Url>
+                                    </manifestEntries>
+                                </manifestSection>
+                            </manifestSections>
+                        </archive>
+                    </configuration>
+                </plugin>
+            </plugins>
+        </pluginManagement>
+    </build>
+    <profiles>
+        <profile>
+            <id>enforce</id>
+            <activation>
+                <property>
+                    <name>!skip-enforce</name>
+                </property>
+            </activation>
+            <build>
+                <plugins>
+                    <plugin>
+                        <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-enforcer-plugin</artifactId>
+                        <executions>
+                            <execution>
+                                <id>enforce-java-version</id>
+                                <goals>
+                                    <goal>enforce</goal>
+                                </goals>
+                                <configuration>
+                                    <rules>
+                                        <requireJavaVersion>
+                                            <message>To build this project JDK ${jdk.min.version} (or greater) is required. Please install it.</message>
+                                            <version>${jdk.min.version}</version>
+                                        </requireJavaVersion>
+                                    </rules>
+                                </configuration>
+                            </execution>
+                            <execution>
+                                <id>enforce-maven-version</id>
+                                <goals>
+                                    <goal>enforce</goal>
+                                </goals>
+                                <configuration>
+                                    <rules>
+                                        <requireMavenVersion>
+                                            <message>To build this project Maven ${maven.min.version} (or greater) is required. Please install it.</message>
+                                            <version>${maven.min.version}</version>
+                                        </requireMavenVersion>
+                                    </rules>
+                                </configuration>
+                            </execution>
+                        </executions>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
+
+        <!-- By default source jar is generated and deployed -->
+        <profile>
+            <id>sources</id>
+            <activation>
+                <property>
+                    <name>!skip-sources</name>
+                </property>
+            </activation>
+            <build>
+                <plugins>
+                    <plugin>
+                        <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-source-plugin</artifactId>
+                        <inherited>true</inherited>
+                        <executions>
+                            <execution>
+                                <id>attach-sources</id>
+                                <phase>install</phase>
+                                <goals>
+                                    <goal>jar-no-fork</goal>
+                                </goals>
+                            </execution>
+                        </executions>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
+
+        <!-- By default source jar is generated and deployed -->
+        <profile>
+            <id>javadoc</id>
+            <activation>
+                <property>
+                    <name>!skip-javadoc</name>
+                </property>
+            </activation>
+            <build>
+                <plugins>
+                    <plugin>
+                        <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-javadoc-plugin</artifactId>
+                        <inherited>true</inherited>
+                        <executions>
+                            <execution>
+                                <id>attach-javadoc</id>
+                                <phase>install</phase>
+                                <goals>
+                                    <goal>jar</goal>
+                                </goals>
+                            </execution>
+                        </executions>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
+
+        <!-- This profile is activated when a project is released. -->
+        <profile>
+            <id>release</id>
+            <build>
+                <plugins>
+                    <plugin>
+                        <inherited>true</inherited>
+                        <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-deploy-plugin</artifactId>
+                        <configuration>
+                            <updateReleaseInfo>true</updateReleaseInfo>
+                        </configuration>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
+    </profiles>
+
+    <distributionManagement>
+        <repository>
+            <id>nexus-repo</id>
+            <name>release repo</name>
+            <url>${releases.repo.url}</url>
+        </repository>
+        <snapshotRepository>
+            <id>nexus-snapshot-repo</id>
+            <name>snapshot repo</name>
+            <url>${snapshots.repo.url}</url>
+        </snapshotRepository>
+    </distributionManagement>
+
+</project>
