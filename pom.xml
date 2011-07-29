@@ -8,6 +8,11 @@
     <name>Parent Pom</name>
     
     <description>Parent POM. Provides default project build configuration.</description>
+
+    <organization>
+        <name>feniix-hq</name>
+        <url>http://blog.feniix-hq.net</url>
+    </organization>
     
     <developers>
         <developer>
@@ -17,7 +22,6 @@
             <url>http://blog.feniix-hq.net</url>
             <timezone>-6</timezone>
         </developer>
-
     </developers>
     
     <scm>
