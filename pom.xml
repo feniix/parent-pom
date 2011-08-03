@@ -1,6 +1,6 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
-    <groupId>net.feniixhq</groupId>
+    <groupId>net.feniixhq.maven</groupId>
     <artifactId>parent</artifactId>
     <version>2-SNAPSHOT</version>
     <packaging>pom</packaging>
@@ -57,15 +57,15 @@
         <version.javadoc.plugin>2.8</version.javadoc.plugin>
         <version.javancss.plugin>2.0</version.javancss.plugin>
         <version.jdepend.plugin>2.0-beta-2</version.jdepend.plugin>
-        <version.jxr.plugin>2.2</version.jxr.plugin>
+        <version.jxr.plugin>2.3</version.jxr.plugin>
         <version.license.plugin>1.0-beta-2</version.license.plugin>
         <version.pir.plugin>2.4</version.pir.plugin><!-- maven-project-info-reports-plugins -->
         <version.plugin.plugin>2.8</version.plugin.plugin>
         <version.pmd.plugin>2.5</version.pmd.plugin>
         <version.rar.plugin>2.2</version.rar.plugin>
-        <version.release.plugin>2.2</version.release.plugin>
+        <version.release.plugin>2.2.1</version.release.plugin>
         <version.resources.plugin>2.5</version.resources.plugin>
-        <version.site.plugin>3.0-beta-3</version.site.plugin>
+        <version.site.plugin>3.0</version.site.plugin>
         <version.sonar.plugin>2.0-beta-2</version.sonar.plugin>
         <version.source.plugin>2.1.2</version.source.plugin>
         <version.surefire.plugin>2.9</version.surefire.plugin>
