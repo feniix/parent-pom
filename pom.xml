@@ -40,7 +40,7 @@
         <version.buildnumber.plugin>1.0</version.buildnumber.plugin>
         <version.clean.plugin>2.4.1</version.clean.plugin>
         <version.changelog.plugin>2.2</version.changelog.plugin>
-        <version.checkstyle.plugin>2.6</version.checkstyle.plugin>
+        <version.checkstyle.plugin>2.7</version.checkstyle.plugin>
         <version.cobertura.plugin>2.4</version.cobertura.plugin>
         <version.clover2.plugin>3.0.2</version.clover2.plugin>
         <version.compiler.plugin>2.3.2</version.compiler.plugin>
